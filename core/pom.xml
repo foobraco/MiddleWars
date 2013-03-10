@@ -9,15 +9,31 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
+ <properties>
+   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   <jbehave.core.version>3.3.2</jbehave.core.version>
+ </properties>
+
   <artifactId>middlewars-core</artifactId>
   <packaging>jar</packaging>
   <name>MiddleWars Core</name>
 
   <dependencies>
     <dependency>
+     <groupId>org.jbehave</groupId>
+     <artifactId>jbehave-core</artifactId>
+     <version>${jbehave.core.version}</version>
+   </dependency>
+    <dependency>
       <groupId>com.googlecode.playn</groupId>
       <artifactId>playn-core</artifactId>
       <version>${playn.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.googlecode.playn</groupId>
+      <artifactId>playn-java</artifactId>
+      <version>${playn.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -36,7 +52,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
+      </plugin>	
     </plugins>
   </build>
 </project>
