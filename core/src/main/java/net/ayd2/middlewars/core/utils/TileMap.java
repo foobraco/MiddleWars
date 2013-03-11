@@ -139,4 +139,8 @@ public class TileMap {
 			}
 			return tilemap[x][y];
 		}
+		
+		public Tile[][] getTilemap(){
+			return this.tilemap;
+		}
 }

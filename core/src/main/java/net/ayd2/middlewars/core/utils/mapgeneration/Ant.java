@@ -16,7 +16,7 @@ public class Ant implements SubjectAnt {
 		this.PositionX=posx;
 		this.PositionY=posy;
 		this.Mapa=mp;
-		System.out.println(life+" "+posx+" "+posy);
+		System.out.println(type+" "+posx+" "+posy);
 	}
 	
 	public void Update(float delta){
@@ -25,49 +25,49 @@ public class Ant implements SubjectAnt {
 		switch(Direction){
 		case 0://up
 			if(getTile(PositionX,PositionY-1) != null){
-				setTile(PositionX,PositionY-1,new StaticTile(null, Direction, null, Direction));
+				setTile(PositionX,PositionY-1,new StaticTile(String.valueOf(this.Type), Direction, String.valueOf(this.Type), Direction));
 				PositionY=PositionY-1;
 			}
 			break;
 		case 1://upl
 			if(getTile(PositionX-1,PositionY-1) != null){
-				setTile(PositionX-1,PositionY-1,new StaticTile(null, Direction, null, Direction));
+				setTile(PositionX-1,PositionY-1,new StaticTile(String.valueOf(this.Type), Direction, String.valueOf(this.Type), Direction));
 				PositionX=PositionX-1;PositionY=PositionY-1;
 			}
 			break;
 		case 2://left
 			if(getTile(PositionX-1,PositionY) != null){
-				setTile(PositionX-1,PositionY,new StaticTile(null, Direction, null, Direction));
+				setTile(PositionX-1,PositionY,new StaticTile(String.valueOf(this.Type), Direction, String.valueOf(this.Type), Direction));
 				PositionX=PositionX-1;
 			}
 			break;
 		case 3://downl
 			if(getTile(PositionX-1,PositionY+1) != null){
-				setTile(PositionX-1,PositionY+1,new StaticTile(null, Direction, null, Direction));
+				setTile(PositionX-1,PositionY+1,new StaticTile(String.valueOf(this.Type), Direction, String.valueOf(this.Type), Direction));
 				PositionX=PositionX-1;PositionY=PositionY+1;
 			}
 			break;
 		case 4://down
 			if(getTile(PositionX,PositionY+1) != null){
-				setTile(PositionX,PositionY+1,new StaticTile(null, Direction, null, Direction));
+				setTile(PositionX,PositionY+1,new StaticTile(String.valueOf(this.Type), Direction, String.valueOf(this.Type), Direction));
 				PositionY=PositionY+1;
 			}
 			break;
 		case 5://downr
 			if(getTile(PositionX+1,PositionY+1) != null){
-				setTile(PositionX+1,PositionY+1,new StaticTile(null, Direction, null, Direction));
+				setTile(PositionX+1,PositionY+1,new StaticTile(String.valueOf(this.Type), Direction, String.valueOf(this.Type), Direction));
 				PositionX=PositionX+1;PositionY=PositionY+1;
 			}
 			break;
 		case 6://right
 			if(getTile(PositionX+1,PositionY) != null){
-				setTile(PositionX+1,PositionY,new StaticTile(null, Direction, null, Direction));
+				setTile(PositionX+1,PositionY,new StaticTile(String.valueOf(this.Type), Direction, String.valueOf(this.Type), Direction));
 				PositionX=PositionX+1;
 			}
 			break;
 		case 7://upr
 			if(getTile(PositionX+1,PositionY-1) != null){
-				setTile(PositionX+1,PositionY-1,new StaticTile(null, Direction, null, Direction));
+				setTile(PositionX+1,PositionY-1,new StaticTile(String.valueOf(this.Type), Direction, String.valueOf(this.Type), Direction));
 				PositionX=PositionX+1;PositionY=PositionY-1;
 			}
 			break;										
@@ -105,18 +105,18 @@ public class Ant implements SubjectAnt {
 		if (x < 0 || x >= Width() || y < 0 || y >= Height()) {
 			return null;
 		}
-		return Mapa[x][y];	
+		return RealGenerator.tilemap[x][y];	
 	}
 	public void setTile(int x, int y,Tile tl){
-		Mapa[x][y]=tl;
+		RealGenerator.tilemap[x][y]=tl;
 	}
 
 	public int Width() {
-		return Mapa.length;
+		return RealGenerator.tilemap.length;
 	}
 
 	public int Height() {
-		return Mapa[0].length;
+		return RealGenerator.tilemap[0].length;
 	}
 	
 	
