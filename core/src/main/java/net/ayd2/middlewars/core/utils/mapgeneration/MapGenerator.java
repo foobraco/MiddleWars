@@ -2,6 +2,7 @@ package net.ayd2.middlewars.core.utils.mapgeneration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import net.ayd2.middlewars.core.StaticTile;
 import net.ayd2.middlewars.core.utils.Tile;
@@ -13,8 +14,8 @@ public class MapGenerator {
 		
 	}
 	
-	public TileMap GenerateMap(int x, int y, int base){//the delegator
-		TileMap tl=new RealGenerator().GenerateMapBit(x,y,base);	
+	public TileMap GenerateMap(int x, int y, int base, float complexity){//the delegator
+		TileMap tl=new RealGenerator().GenerateMapBit(x,y,base, complexity);	
 		return tl;		
 	}
 	
@@ -22,7 +23,7 @@ public class MapGenerator {
 
 class RealGenerator{//the delegate
 	Tile[][] tilemap;
-	TileMap GenerateMapBit(int x, int y,int base){// size and type of terrain
+	TileMap GenerateMapBit(int x, int y,int base, float complexity){// size and type of terrain
 		tilemap=new Tile[x][y];
 		for(int sx=0;sx<x;sx++){
 			for(int sy=0;sy<y;sy++){
@@ -32,11 +33,14 @@ class RealGenerator{//the delegate
 		
 		List<Ant> hormigas=new ArrayList<Ant>();
 		//fill with ants
-		int total=(x*y)/(x+y);		
+		int total= (int)((x*y)/((x+y)*complexity));		
 		for(int xv=0;xv<total;xv++){
-			hormigas.add(new Ant(tilemap, 0, (int)Math.random()*100, (int)Math.random()*Width(), (int)Math.random()*Height()));
+			int lifespawn=(int) (Math.random()*100);
+			int size=(int) (Math.random()*Width());
+			int height=(int) (Math.random()*Width());
+			hormigas.add(new Ant(tilemap, 0, lifespawn,size ,height ));
 		}		
-		
+		System.out.println("working with "+hormigas.size()+" ants");
 		while(hormigas.size()>0){
 			for(Ant hor: hormigas){
 				if(hor.isAlive()){
@@ -48,7 +52,8 @@ class RealGenerator{//the delegate
 			}
 		}
 		
-		TileMap tlmp=new TileMap(base, base, tilemap);		
+		TileMap tlmp=new TileMap(base, base, tilemap);	
+		System.out.println("Map generated");
 		return tlmp;
 	}
 	

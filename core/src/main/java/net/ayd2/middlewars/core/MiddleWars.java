@@ -1,6 +1,7 @@
 package net.ayd2.middlewars.core;
 
 import static playn.core.PlayN.*;
+import net.ayd2.middlewars.core.utils.mapgeneration.MapGenerator;
 
 import playn.core.Game;
 import playn.core.Image;
@@ -13,6 +14,8 @@ public class MiddleWars implements Game {
     Image bgImage = assets().getImage("images/bg.png");
     ImageLayer bgLayer = graphics().createImageLayer(bgImage);
     graphics().rootLayer().add(bgLayer);
+    MapGenerator mpg = null;
+    mpg.GenerateMap(800, 600, 0,0.70f);
   }
 
   @Override

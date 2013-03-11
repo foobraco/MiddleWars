@@ -16,6 +16,7 @@ public class Ant implements SubjectAnt {
 		this.PositionX=posx;
 		this.PositionY=posy;
 		this.Mapa=mp;
+		System.out.println(life+" "+posx+" "+posy);
 	}
 	
 	public void Update(float delta){
@@ -44,7 +45,7 @@ public class Ant implements SubjectAnt {
 			if(getTile(PositionX-1,PositionY+1) != null){
 				setTile(PositionX-1,PositionY+1,new StaticTile(null, Direction, null, Direction));
 				PositionX=PositionX-1;PositionY=PositionY+1;
-			}PositionY=PositionY-1;
+			}
 			break;
 		case 4://down
 			if(getTile(PositionX,PositionY+1) != null){
@@ -75,7 +76,7 @@ public class Ant implements SubjectAnt {
 	}
 	
 	public boolean isAlive(){
-		return false;
+		return getLife()>0 ? true:false;
 	}
 
 	public int getLife(){
