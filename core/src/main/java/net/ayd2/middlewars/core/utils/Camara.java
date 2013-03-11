@@ -7,11 +7,11 @@ public class Camara {
 	public boolean up, down,left,right;
 
 	public Camara(Map level, Vector2 pos) {
-		position = pos;
+		this.position = pos;
 	}
 
 	public Vector2 Position() {
-		return position;
+		return this.position;
 	}
 
 	// manual camera
@@ -20,12 +20,13 @@ public class Camara {
 	}
 
 	public void update_position(float x, float y) {
-		position.X += x;
-		position.Y += y;
+		this.position.X += x;
+		this.position.Y += y;
 	}
 
 	public void update_position(Vector2 pos) {
-		position.add(pos);
+		this.position.X += pos.X;
+		this.position.Y += pos.Y;
 	}
 
 	public void update() {

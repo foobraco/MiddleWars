@@ -22,6 +22,7 @@ public class TileMap {
 	public void UpdateOffsets(Camara cam){
 		mapWidth = tilesToPixelsX(this.Width());
 		mapHeight = tilesToPixelsY(this.Height());
+		  System.out.println(cam.Position().X+" "+cam.Position().Y);
 
 		if(cam.Position().X>mapWidth-(ScreenWidth/2)){
 			cam.setPosition(new Vector2(mapWidth-(ScreenWidth/2),cam.Position().Y));
@@ -29,12 +30,12 @@ public class TileMap {
 		if(cam.Position().Y>mapHeight-(ScreenHeight/2)){
 			cam.setPosition(new Vector2(cam.Position().X,mapHeight-(ScreenHeight/2)));
 		}
-		offsetX = (400 - Math.round(cam.Position().X));
+		offsetX = (ScreenWidth/2 - Math.round(cam.Position().X));
 		offsetX = Math.min(offsetX, 0);
 		offsetX = Math.max(offsetX, (ScreenWidth/2) - mapWidth);
-		offsetY = 240- Math.round(cam.Position().Y);
+		offsetY = ScreenHeight/2- Math.round(cam.Position().Y);
 		offsetY = Math.min(offsetY, 0);
-		offsetY = Math.max((240 - mapHeight),
+		offsetY = Math.max((ScreenHeight/2 - mapHeight),
 				offsetY);
 		// which tiles are visible_
 		firstTileX = pixelsToTilesX(-offsetX);

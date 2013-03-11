@@ -17,7 +17,7 @@ public class StaticTile extends Tile{
 
 	@Override
 	public void Draw(Surface surf, Vector2 position) {
-		
+		surf.drawImage(MiddleWars.imagemap[Integer.parseInt(name)], position.X, position.Y);
 		
 	}
 

@@ -26,7 +26,7 @@ class RealGenerator{//the delegate
 		tilemap=new Tile[x][y];
 		for(int sx=0;sx<x;sx++){
 			for(int sy=0;sy<y;sy++){
-						setTile(sx,sy,new StaticTile("0",2,"0",0));		
+						setTile(sx,sy,new StaticTile(String.valueOf(base),2,String.valueOf(base),0));		
 			}			
 		}
 		

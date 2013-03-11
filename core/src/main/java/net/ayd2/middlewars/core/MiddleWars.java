@@ -1,10 +1,16 @@
 package net.ayd2.middlewars.core;
 
 import static playn.core.PlayN.*;
+import net.ayd2.middlewars.core.utils.Camara;
 import net.ayd2.middlewars.core.utils.Tile;
 import net.ayd2.middlewars.core.utils.TileMap;
+import net.ayd2.middlewars.core.utils.Vector2;
 import net.ayd2.middlewars.core.utils.mapgeneration.MapGenerator;
-
+import playn.core.Key;
+import playn.core.Keyboard.Event;
+import playn.core.Keyboard.TypedEvent;
+import playn.core.Pointer;
+import playn.core.Keyboard;
 import playn.core.Game;
 import playn.core.Image;
 import playn.core.ImageLayer;
@@ -16,6 +22,8 @@ public class MiddleWars implements Game {
 	Tile[][] tilemap;
 	public static Image[] imagemap= new Image[3];
 	TileMap tl;
+	Camara cam;
+	 float touchVectorX, touchVectorY;
   @Override
   public void init() {
 	
@@ -27,23 +35,82 @@ public class MiddleWars implements Game {
     ImageLayer bgLayer = graphics().createImageLayer(bgImage);
     graphics().rootLayer().add(bgLayer);
     MapGenerator mpg = new MapGenerator();
-    tilemap=mpg.GenerateMap(800, 600, 0,50).getTilemap();
+    tilemap=mpg.GenerateMap(800, 600, 2,70).getTilemap();
+    cam=new Camara(null, new Vector2(graphics().width()/2,graphics().height()/2));
     tl=new TileMap(800, 600, tilemap);
+    cam.setPosition(new Vector2(graphics().width()/2,graphics().height()/2));
+    
+    pointer().setListener(new Pointer.Listener() {
+        @Override
+        public void onPointerEnd(Pointer.Event event) {
+          touchVectorX = touchVectorY = 0;
+        }
+        @Override
+        public void onPointerCancel(Pointer.Event event) {
+          touchVectorX = touchVectorY = 0;
+        }
+        @Override
+        public void onPointerDrag(Pointer.Event event) {
+          touchMove(event.x(), event.y());
+        }
+        @Override
+        public void onPointerStart(Pointer.Event event) {
+          touchMove(event.x(), event.y());
+        }
+      });
+    
+    
+    keyboard().setListener(new Keyboard.Listener() {
+		@Override
+		public void onKeyDown(Event event) {
+			// TODO Auto-generated method stub
+			if(event.key().equals(Key.LEFT)){
+				touchVectorX-=Tile.Width;
+			}
+			if(event.key().equals(Key.RIGHT)){
+				touchVectorX+=Tile.Width;
+			}
+			if(event.key(	).equals(Key.UP)){
+				touchVectorY-=Tile.Width;
+			}
+			if(event.key().equals(Key.DOWN)){
+				touchVectorY+=Tile.Width;
+			}
+		}
+
+		@Override
+		public void onKeyTyped(TypedEvent event) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onKeyUp(Event event) {
+			// TODO Auto-generated method stub
+			touchVectorX=touchVectorY=0;
+		}
+       
+      });
+    
     
     layer = graphics().createImmediateLayer(800,600,new ImmediateLayer.Renderer() {
 		@Override
 		public void render(Surface surface) {
-			int w=0,h=0;
-			  for(int x=0;x<800;x++){
-				  for(int y=0;y<600;y++){
-				  surface.drawImage(imagemap[Integer.parseInt(tilemap[x][y].name)], x*10, y*10);
-				  }
-			  }
-			  h=w=0;
+			tl.DrawTiles(surface);
 		}
 	});
     graphics().rootLayer().add(layer);
+    
+    
   }
+  
+  private void touchMove(float x, float y) {
+	    float cx = graphics().width() / 2;
+	    float cy = graphics().height() / 2;
+
+	    touchVectorX = (x - cx) * Tile.Width / cx;
+	    touchVectorY = (y - cy) * Tile.Width / cy;
+	  }
 
   @Override
   public void paint(float alpha) {
@@ -51,8 +118,9 @@ public class MiddleWars implements Game {
   }
 
   @Override
-  public void update(float delta) {
-	  
+  public void update(float delta) {	  
+	  cam.update_position(new Vector2(touchVectorX,touchVectorY));
+	  tl.UpdateOffsets(cam);
   }
 
   @Override
