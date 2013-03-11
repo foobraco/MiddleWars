@@ -14,8 +14,8 @@ public class MiddleWars implements Game {
     Image bgImage = assets().getImage("images/bg.png");
     ImageLayer bgLayer = graphics().createImageLayer(bgImage);
     graphics().rootLayer().add(bgLayer);
-    MapGenerator mpg = null;
-    mpg.GenerateMap(800, 600, 0,0.70f);
+    MapGenerator mpg = new MapGenerator();
+    mpg.GenerateMap(800, 600, 0,0.70f)asdasda;
   }
 
   @Override
