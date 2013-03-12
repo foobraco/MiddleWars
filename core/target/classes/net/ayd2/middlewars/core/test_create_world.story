@@ -1,0 +1,6 @@
+Scenario: When a user starts a game a new world is created an is set the default complexity for its creation
+
+Given a map generator
+Given a game board
+When the game creates a new world sets the default complexity level of ant creation.
+Then the game board must be added to the playable board.

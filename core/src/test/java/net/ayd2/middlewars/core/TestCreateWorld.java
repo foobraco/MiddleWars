@@ -1,7 +1,10 @@
-package net.ayd2.middlewars.exampleTests;
+package net.ayd2.middlewars.core;
 
 import java.util.List;
  
+import net.ayd2.middlewars.core.utils.Tile;
+import net.ayd2.middlewars.core.utils.TileMap;
+import net.ayd2.middlewars.core.utils.mapgeneration.MapGenerator;
 import net.ayd2.middlewars.exampleTests.Product;
 import net.ayd2.middlewars.exampleTests.ShoppingCart;
 import net.ayd2.middlewars.exampleTests.User;
@@ -20,36 +23,28 @@ import org.jbehave.core.steps.InstanceStepsFactory;
 import org.junit.Assert;
 import org.junit.Test;
  
-public class TestAddProductToShoppingCart extends JUnitStory {
- private User            user;
- private ShoppingCart    shoppingCart;
- private Product            product;
+public class TestCreateWorld extends JUnitStory {
+ private MapGenerator            mapgen;
+ private Tile[][]    map;
  
- @Given("a user")
- public void aUser() {
- user = new User();
+ @Given("a map generator")
+ public void aMapGenerator() {
+ mapgen = new MapGenerator();
  }
  
- @Given("a shopping cart")
- public void aShoppingCart() {
- shoppingCart = new ShoppingCart();
+ @Given("a game board")
+ public void aGameBoard() {
+	map = new Tile[50][50];
  }
  
- @Given("a product")
- public void aProduct() {
- product = new Product();
- product.setName("Coffee");
- }
+ @When("the game creates a new world sets the default complexity level of ant creation.")
+ public void whenTheGameCreatesANewWorldSetsTheDefaultComplexityLevelOfAntCreation() {
+	 map = mapgen.GenerateMap(50,50, 1, 50).getTilemap();
+	 }
  
- @When("the user adds the product to the shopping cart")
- public void userAddsProductToShoppingCart() {
- shoppingCart.add(user, product);
- }
- 
- @Then("the product must be included in the list of the shoppingcart's entries")
- public void productMustBeListed() {
- List<Product> entries = shoppingCart.getProductsByUser(user);
- Assert.assertTrue(entries.contains(product));
+ @Then("the game board must be added to the playable board.")
+ public void thenTheGameBoardMustBeAddedToThePlayableBoard() {
+ Assert.assertTrue(map != null );
  }
  
  @Override
