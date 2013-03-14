@@ -34,9 +34,9 @@ public class MiddleWars implements Game {
 		 if(type.equalsIgnoreCase("water")){
 			 t=0;
 		 }else if(type.equalsIgnoreCase("forest")){
-			 t=1;
-		 }else if (type.equalsIgnoreCase("desert")){
 			 t=2;
+		 }else if (type.equalsIgnoreCase("desert")){
+			 t=1;
 		 }
 		 System.out.println(type);
 

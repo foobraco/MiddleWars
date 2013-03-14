@@ -39,8 +39,9 @@ class RealGenerator{//the delegate
 			int size=(int) (Math.random()*Width());
 			int height=(int) (Math.random()*Width());
 			int val=(int) (Math.random()*3);
-			
-			hormigas.add(new Ant(tilemap, val, lifespawn,size ,height ));
+			Ant ant=new Ant(tilemap, val, lifespawn,size ,height );
+			ant.register();
+			hormigas.add(ant);
 			
 		}		
 		System.out.println("working with "+hormigas.size()+" ants");
@@ -50,7 +51,8 @@ class RealGenerator{//the delegate
 				if(hor.isAlive()){
 					hor.Update(1);
 				}else{
-					hormigas.remove(hor);
+					hor.unregister();
+					hormigas.remove(hor);					
 					break;
 				}
 			}

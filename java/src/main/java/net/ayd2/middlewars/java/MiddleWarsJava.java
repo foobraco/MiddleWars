@@ -15,7 +15,7 @@ public class MiddleWarsJava {
      * dimensions [800,600] defines de size in tiles of the map, 
      * [number of ants] for the complexity algorithm
      */
-    String data="create [water] map with dimensions [800,600] with [30] ants";
+    String data="create [desert] map with dimensions [800,600] with [30] ants";
     PlayN.run(new MiddleWars(data));
   }
 }
