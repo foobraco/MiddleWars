@@ -22,6 +22,7 @@ public class MapGenerator {
 
 class RealGenerator{//the delegate
 	public static Tile[][] tilemap;
+	public static List<Ant> hormigas;
 	TileMap GenerateMapBit(int x, int y,int base, float complexity){// size and type of terrain
 		tilemap=new Tile[x][y];
 		for(int sx=0;sx<x;sx++){
@@ -30,7 +31,7 @@ class RealGenerator{//the delegate
 			}			
 		}
 		
-		List<Ant> hormigas=new ArrayList<Ant>();
+		hormigas=new ArrayList<Ant>();
 		//fill with ants
 		int total= (int)((x*y)/((x+y))*complexity);		
 		for(int xv=0;xv<total;xv++){
@@ -40,8 +41,10 @@ class RealGenerator{//the delegate
 			int val=(int) (Math.random()*3);
 			
 			hormigas.add(new Ant(tilemap, val, lifespawn,size ,height ));
+			
 		}		
 		System.out.println("working with "+hormigas.size()+" ants");
+		
 		while(hormigas.size()>0){
 			for(Ant hor: hormigas){
 				if(hor.isAlive()){

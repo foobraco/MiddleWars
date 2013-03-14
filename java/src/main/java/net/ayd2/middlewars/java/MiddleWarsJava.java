@@ -9,6 +9,13 @@ public class MiddleWarsJava {
 
   public static void main(String[] args) {
     JavaPlatform.register();
-    PlayN.run(new MiddleWars());
+    /*
+     * To define a map you need a string containing:
+     * create [water|forest|desert] select one of those for the kind of basemap
+     * dimensions [800,600] defines de size in tiles of the map, 
+     * [number of ants] for the complexity algorithm
+     */
+    String data="create [water] map with dimensions [800,600] with [30] ants";
+    PlayN.run(new MiddleWars(data));
   }
 }

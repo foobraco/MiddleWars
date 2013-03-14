@@ -1,7 +1,5 @@
 package net.ayd2.middlewars.core.utils.mapgeneration;
 
-import java.util.Observer;
-
 import net.ayd2.middlewars.core.StaticTile;
 import net.ayd2.middlewars.core.utils.Tile;
 
@@ -16,7 +14,6 @@ public class Ant implements SubjectAnt {
 		this.PositionX=posx;
 		this.PositionY=posy;
 		this.Mapa=mp;
-		System.out.println(type+" "+posx+" "+posy);
 	}
 	
 	public void Update(float delta){
@@ -72,7 +69,9 @@ public class Ant implements SubjectAnt {
 			}
 			break;										
 		}
-		
+		if(!isAlive()){
+			this.unregister();
+		}
 	}
 	
 	public boolean isAlive(){
@@ -92,13 +91,13 @@ public class Ant implements SubjectAnt {
 	}
 
 	@Override
-	public void register(Observer o) {
-
+	public void register() {
+		
 	}
 
 	@Override
-	public void unregister(Observer o) {
-
+	public void unregister() {
+		
 	}
 	
 	public Tile getTile(int x, int y){

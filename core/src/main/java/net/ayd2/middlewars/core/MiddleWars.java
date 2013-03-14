@@ -23,7 +23,39 @@ public class MiddleWars implements Game {
 	public static Image[] imagemap= new Image[3];
 	TileMap tl;
 	Camara cam;
+	int w,h,t,c;
 	 float touchVectorX, touchVectorY;
+	 
+	 public MiddleWars(String data){
+		 String[] valores=data.split(" ");
+		 String type;
+		 type=valores[1].replace("[", "");
+		 type=type.replace("]", "");
+		 if(type.equalsIgnoreCase("water")){
+			 t=0;
+		 }else if(type.equalsIgnoreCase("forest")){
+			 t=1;
+		 }else if (type.equalsIgnoreCase("desert")){
+			 t=2;
+		 }
+		 System.out.println(type);
+
+		 System.out.println(valores[5]);
+		 type=valores[5].replace("[", "");
+		 type=type.replace("]", "");
+		 String[] size=type.split(",");
+		 w=Integer.parseInt(size[0]);
+		 h=Integer.parseInt(size[1]);
+		 
+		 System.out.println(valores[7]);
+		 
+		 type=valores[7].replace("[", "");
+		 type=type.replace("]", "");
+		 
+		 c=Integer.parseInt(type);
+	 }
+	 
+	 
   @Override
   public void init() {
 	
@@ -35,9 +67,9 @@ public class MiddleWars implements Game {
     ImageLayer bgLayer = graphics().createImageLayer(bgImage);
     graphics().rootLayer().add(bgLayer);
     MapGenerator mpg = new MapGenerator();
-    tilemap=mpg.GenerateMap(800, 600, 2,70).getTilemap();
+    tilemap=mpg.GenerateMap(w, h, t,c).getTilemap();
     cam=new Camara(null, new Vector2(graphics().width()/2,graphics().height()/2));
-    tl=new TileMap(800, 600, tilemap);
+    tl=new TileMap(w, h, tilemap);
     cam.setPosition(new Vector2(graphics().width()/2,graphics().height()/2));
     
     pointer().setListener(new Pointer.Listener() {
