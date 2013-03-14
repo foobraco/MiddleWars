@@ -26,6 +26,8 @@ public class MiddleWars implements Game {
 	int w,h,t,c;
 	 float touchVectorX, touchVectorY;
 	 
+//	 This constructor is working with an interpreter design, parsing the natural language that is passed to it, and translating that into instructions .
+//	 Este constructor esta trabajando con el patron de Interpreter, parseando el lenguaje natural que se le pasa, traduciendolo a instrucciones en el codigo.
 	 public MiddleWars(String data){
 		 String[] valores=data.split(" ");
 		 String type;
