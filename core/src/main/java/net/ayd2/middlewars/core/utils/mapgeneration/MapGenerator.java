@@ -7,12 +7,6 @@ import net.ayd2.middlewars.core.StaticTile;
 import net.ayd2.middlewars.core.utils.Tile;
 import net.ayd2.middlewars.core.utils.TileMap;
 
-//
-//The Class MapGenerator is delegating its tasks to the RealGenerator 
-//, given the impression that MapGenerator is doing the work but is RealGenerator wich is doing it instead
-//La Clase MapGenerator esta delegando sus tareas a RealGenerator, dando la
-//impresion de que MapGenerator esta haciendo el trabajo, mientras que el que lo esta haciendo es RealGenerator.
-
 public class MapGenerator {
 	Tile[][] TileMap;
 	public MapGenerator(){
@@ -33,7 +27,7 @@ class RealGenerator{//the delegate
 		tilemap=new Tile[x][y];
 		for(int sx=0;sx<x;sx++){
 			for(int sy=0;sy<y;sy++){
-						setTile(sx,sy,new StaticTile(String.valueOf(base),2,String.valueOf(base),0));		
+						setTile(sx,sy,new StaticTile(String.valueOf(base),base,String.valueOf(base),0));		
 			}			
 		}
 		

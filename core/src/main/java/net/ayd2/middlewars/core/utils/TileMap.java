@@ -22,7 +22,6 @@ public class TileMap {
 	public void UpdateOffsets(Camara cam){
 		mapWidth = tilesToPixelsX(this.Width());
 		mapHeight = tilesToPixelsY(this.Height());
-		  System.out.println(cam.Position().X+" "+cam.Position().Y);
 
 		if(cam.Position().X>mapWidth-(ScreenWidth/2)){
 			cam.setPosition(new Vector2(mapWidth-(ScreenWidth/2),cam.Position().Y));
@@ -125,7 +124,7 @@ public class TileMap {
 
 		public int GetCollision(int x, int y) {
 			if (x < 0 || x >= Width() || y < 0 || y >= Height()) {
-				return 1;
+				return -1;
 			}
 			return tilemap[x][y].Collision;
 		}
@@ -143,5 +142,8 @@ public class TileMap {
 		
 		public Tile[][] getTilemap(){
 			return this.tilemap;
+		}
+		public Vector2 getOffsets(){
+			return new Vector2(offsetX,offsetY);
 		}
 }

@@ -9,6 +9,6 @@ public class MiddleWarsActivity extends GameActivity {
 
   @Override
   public void main(){
-    PlayN.run(new MiddleWars());
+    PlayN.run(new MiddleWars(null));
   }
 }

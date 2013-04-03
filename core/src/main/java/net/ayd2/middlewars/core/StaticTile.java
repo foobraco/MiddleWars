@@ -5,7 +5,6 @@ import net.ayd2.middlewars.core.utils.Tile;
 import net.ayd2.middlewars.core.utils.Vector2;
 
 public class StaticTile extends Tile{
-
 	public StaticTile(String texture, int collision, String data, int tp) {
 		if (texture != null) {
 			Texture = texture;
@@ -14,17 +13,14 @@ public class StaticTile extends Tile{
 			Type=tp;
 		}
 	}
-
 	@Override
 	public void Draw(Surface surf, Vector2 position) {
 		surf.drawImage(MiddleWars.imagemap[Integer.parseInt(name)], position.X, position.Y);
 		
 	}
-
 	@Override
 	public void Update(float f) {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
