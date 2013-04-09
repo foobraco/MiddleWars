@@ -7,6 +7,8 @@ public class Sword extends Item{
 
 	public Sword(Entity ent, int amount) {
 		super(ent, amount);
+		this.setType(0);
+
 		// TODO Auto-generated constructor stub
 	}
 

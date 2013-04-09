@@ -1,0 +1,7 @@
+
+(net/ayd2/middlewars/core/test_avatar.story)
+Scenario: 
+When the user starts the game
+Then the avatar must be placed in the world
+
+

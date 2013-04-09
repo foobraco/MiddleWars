@@ -1,0 +1,7 @@
+
+(net/ayd2/middlewars/core/test_obstacle.story)
+Scenario: 
+When the user moves the world and encounters an obstruction
+Then you must stop and not to cross the road
+
+

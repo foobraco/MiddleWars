@@ -5,6 +5,7 @@ import net.ayd2.middlewars.core.MiddleWars;
 import net.ayd2.middlewars.core.items.BareFists;
 import net.ayd2.middlewars.core.utils.Animation;
 import net.ayd2.middlewars.core.utils.Entity;
+import net.ayd2.middlewars.core.utils.Rectangle;
 import net.ayd2.middlewars.core.utils.Vector2;
 
 public class Player extends Entity{
@@ -20,6 +21,7 @@ public class Player extends Entity{
 	@Override
 	public void loadContent() {
 		up=new Animation(MiddleWars.imagemap[3], 40f, 40f, true);
+		this.setBounds(new Rectangle(40,40,40,40,1));
 		amp.PlayAnimation(up);
 	}
 
