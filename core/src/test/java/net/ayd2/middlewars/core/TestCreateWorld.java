@@ -5,9 +5,6 @@ import java.util.List;
 import net.ayd2.middlewars.core.utils.Tile;
 import net.ayd2.middlewars.core.utils.TileMap;
 import net.ayd2.middlewars.core.utils.mapgeneration.MapGenerator;
-import net.ayd2.middlewars.exampleTests.Product;
-import net.ayd2.middlewars.exampleTests.ShoppingCart;
-import net.ayd2.middlewars.exampleTests.User;
 
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
