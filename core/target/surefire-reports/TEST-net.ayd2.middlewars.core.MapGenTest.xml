@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="1.327" errors="0" skipped="0" tests="1" name="net.ayd2.middlewars.core.TestAvatar">
+<testsuite failures="0" time="0.275" errors="0" skipped="0" tests="2" name="net.ayd2.middlewars.core.MapGenTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries"/>
@@ -64,5 +64,6 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16|10.0.0.38:8080|*.10.0.0.38:8080"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="1.318" classname="net.ayd2.middlewars.core.TestAvatar" name="run"/>
+  <testcase time="0.15" classname="net.ayd2.middlewars.core.MapGenTest" name="testMapGeneration"/>
+  <testcase time="0.046" classname="net.ayd2.middlewars.core.MapGenTest" name="testMapLenght"/>
 </testsuite>
