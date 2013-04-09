@@ -2,8 +2,10 @@ package net.ayd2.middlewars.core;
 
 import java.util.List;
  
+import net.ayd2.middlewars.core.actors.Player;
 import net.ayd2.middlewars.core.utils.Tile;
 import net.ayd2.middlewars.core.utils.TileMap;
+import net.ayd2.middlewars.core.utils.Vector2;
 import net.ayd2.middlewars.core.utils.mapgeneration.MapGenerator;
 
 
@@ -24,22 +26,29 @@ import org.junit.Test;
 public class TestAvatar extends JUnitStory {
  private MapGenerator  mapgen;
  private Tile[][]    map;
- 
+ Player jugador;
  @Given("world created")
- public void worldcreated() {
+ public void aWorldCreated() {
+	 mapgen = new MapGenerator();
+	 map=mapgen.GenerateMap(20, 20, 0, 10).getTilemap();
  }
  
  @Given("avatar position")
- public void avatarposition() {
+ public void aAvatarPosition() {
+	 jugador = new Player(0, new Vector2(120,120));
  }
 
  @When("the user starts the game")
  public void whentheuserstartsthegame() {
-	 }
+	 
+}
  
  @Then("the avatar must be placed in the world")
  public void theavatarmustbeplacedintheworld() {
- Assert.assertTrue(true);
+	 if(jugador.getPosition().X<0||jugador.getPosition().X>40*120){
+		 Assert.assertTrue(false);
+	 }
+	 	Assert.assertTrue(true);
  }
  
  @Override

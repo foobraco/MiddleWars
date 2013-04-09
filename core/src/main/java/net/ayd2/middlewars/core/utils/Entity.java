@@ -20,7 +20,6 @@ public abstract class Entity {
 	public Vector2 getPosition(){
 		return this.Position;
 	}
-	public void setBounds(Rectangle b){this.Bounds=b;}
 	public void setPosition(Vector2 pos){
 		this.Position=pos;
 	}

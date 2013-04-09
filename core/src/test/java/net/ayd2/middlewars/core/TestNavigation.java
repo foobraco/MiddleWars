@@ -2,8 +2,10 @@ package net.ayd2.middlewars.core;
 
 import java.util.List;
  
+import net.ayd2.middlewars.core.actors.Player;
 import net.ayd2.middlewars.core.utils.Tile;
 import net.ayd2.middlewars.core.utils.TileMap;
+import net.ayd2.middlewars.core.utils.Vector2;
 import net.ayd2.middlewars.core.utils.mapgeneration.MapGenerator;
 
 
@@ -24,22 +26,33 @@ import org.junit.Test;
 public class TestNavigation extends JUnitStory {
  private MapGenerator  mapgen;
  private Tile[][]    map;
- 
+ Player jugador;
+
  @Given("map dimensions")
- public void aMapGenerator() {
+ public void mapDimensions() {
+	map=new Tile[50][50];
+	mapgen = new MapGenerator();
+	 map=mapgen.GenerateMap(50, 50, 1, 50).getTilemap();
  }
  
  @Given("avatar position")
- public void avatarposition() {
+ public void avatarPosition() {
+	 jugador = new Player(0, new Vector2(0,0));
  }
 
  @When("the user navigates in the world")
- public void theusernavigatesintheworld() {
+ public void theUserNavigatesInTheWorld() {
+	 for(int x=0;x<map.length-1;x++){
+		jugador.setPosition(new Vector2(x*40,0));
 	 }
+}
  
  @Then("see that never leave the boundaries")
- public void seethatneverleavetheboundaries() {
- Assert.assertTrue(true);
+ public void seeThatNeverLeaveTheBoundaries() {
+ if(jugador.getPosition().X>map.length*40){
+		Assert.assertTrue(false);
+	}
+	Assert.assertTrue(true);
  }
  
  @Override

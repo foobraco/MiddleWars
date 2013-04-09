@@ -92,12 +92,10 @@ public class Ant implements SubjectAnt {
 
 	@Override
 	public void register() {
-		System.out.println("Registering Ant at "+this.PositionX+" "+this.PositionY);
 	}
 
 	@Override
 	public void unregister() {
-		System.out.println("Unregistering Ant at "+this.PositionX+" "+this.PositionY);
 
 	}
 	
