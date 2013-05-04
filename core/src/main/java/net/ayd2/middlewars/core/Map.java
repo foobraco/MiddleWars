@@ -88,8 +88,8 @@ public class Map extends Screen{
 		title.canvas().setStrokeWidth(2);
 		title.canvas().setStrokeColor(0xfffffff);
 		title.canvas().drawText("Press Enter", 20, 40);
-	//	title.canvas().fillText(graphics().layoutText("After a shipwreck you wake up on a mysterious island.", MiddleWars.format), 20,40);
-	//	title.canvas().fillText(graphics().layoutText("Its inhabitants are somewhat hostile, try to survive...", MiddleWars.format), 20,60);		
+		title.canvas().fillText(graphics().layoutText("After a shipwreck you wake up on a mysterious island.", MiddleWars.format), 20,40);
+		title.canvas().fillText(graphics().layoutText("Its inhabitants are somewhat hostile, try to survive...", MiddleWars.format), 20,60);		
 	
 		for(int x=0;x<20;x++){
 			Enemigos.add(new Enemy(x, getRandomStartPos(), this));

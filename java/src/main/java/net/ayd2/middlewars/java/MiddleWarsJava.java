@@ -16,7 +16,7 @@ public class MiddleWarsJava {
      * [number of ants] for the complexity algorithm
      */
     JavaPlatform platform = JavaPlatform.register();
-    platform.setTitle("Analisis y Dise~no2");
+    platform.setTitle("Analisis y Diseño2");
     playn.java.JavaPlatform.Config config = new playn.java.JavaPlatform.Config();
 	  config.width = 800;
 	  config.height = 600;
