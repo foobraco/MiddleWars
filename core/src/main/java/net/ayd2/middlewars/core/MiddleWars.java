@@ -11,7 +11,7 @@ import playn.core.Font;
 
 public class MiddleWars implements Game {
 Map mapita;
-public static Image[] imagemap= new Image[9];
+public static Image[] imagemap= new Image[11];
 public static TextFormat format;
 int WIDTH,HEIGHT;
 	 public MiddleWars(String data){

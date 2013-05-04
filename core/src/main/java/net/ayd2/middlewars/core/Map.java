@@ -33,7 +33,11 @@ public class Map extends Screen{
 	List<Enemy> Enemigos=new ArrayList<Enemy>();
 	List<PlayerAttack> Attack=new ArrayList<PlayerAttack>();
 	CanvasImage title;
-	public boolean hasStarted;
+	CanvasImage hp;
+	CanvasImage oxy;
+	CanvasImage Info;
+	int wood;
+	public boolean hasStarted,Pause;
 	
 	public  float touchVectorX, touchVectorY;
 	public Map(String data){
@@ -68,6 +72,9 @@ public class Map extends Screen{
 	    MiddleWars.imagemap[6]=assets().getImage("images/attack.png");
 	    MiddleWars.imagemap[7]=assets().getImage("images/sw.png");
 	    MiddleWars.imagemap[8]=assets().getImage("images/p0W.png");
+	    MiddleWars.imagemap[9]=assets().getImage("images/heart.png");
+	    MiddleWars.imagemap[10]=assets().getImage("images/oxy.png");
+
 	    MapGenerator mpg = new MapGenerator();
 	    tilemap=mpg.GenerateMap(w, h, t,c).getTilemap();
 	    //player gets a type, for now defaults to 0 please.
@@ -82,7 +89,11 @@ public class Map extends Screen{
 		title.canvas().setStrokeColor(0xfffffff);
 		title.canvas().drawText("Press Enter", 20, 40);
 	//	title.canvas().fillText(graphics().layoutText("After a shipwreck you wake up on a mysterious island.", MiddleWars.format), 20,40);
-	//	title.canvas().fillText(graphics().layoutText("Its inhabitants are somewhat hostile, try to survive...", MiddleWars.format), 20,60);
+	//	title.canvas().fillText(graphics().layoutText("Its inhabitants are somewhat hostile, try to survive...", MiddleWars.format), 20,60);		
+	
+		for(int x=0;x<20;x++){
+			Enemigos.add(new Enemy(x, getRandomStartPos(), this));
+		}
 	}
 	
 		Vector2 getRandomStartPos(){
@@ -106,19 +117,41 @@ public class Map extends Screen{
 			@Override
 			public void render(Surface surface) {
 				surface.clear();
+			if(!jugador1.dead)	{
 				if(hasStarted){
 				tl.DrawTiles(surface);
-				jugador1.draw(surface, tl.getOffsets());
 				for(Enemy en: getEnemigos()){
 					en.draw(surface, tl.getOffsets());
 			  }
 			  for(PlayerAttack en: getAttacks()){
 				  en.draw(surface, tl.getOffsets());			  
 				  }
+				jugador1.draw(surface, tl.getOffsets());
+
+			  DrawHUD(surface);
+			  
+			  if(Pause){
+				   title=graphics().createImage(100, 100);
+				    title.canvas().setFillColor(0xffffffff);
+					title.canvas().setStrokeWidth(2);
+					title.canvas().setStrokeColor(0xfffffff);
+					title.canvas().drawText("Pause", 10, 10);
+					surface.drawImage(title, 300, 250);
+			  }
+			  
 			  }else{
 				  surface.drawImage(title, 150, 150);
 			  }
+			}else{
+				title=graphics().createImage(100, 100);
+			    title.canvas().setFillColor(0xffffffff);
+				title.canvas().setStrokeWidth(2);
+				title.canvas().setStrokeColor(0xfffffff);
+				title.canvas().drawText("GameOver", 10, 10);
+				surface.drawImage(title, 300, 250);
 			}
+			}
+			
 		});
 		layer.setAlpha(1f);
 	    graphics().rootLayer().add(layer);
@@ -126,20 +159,39 @@ public class Map extends Screen{
 	    hud=new Hud.Stock();
     	hud.layer.setDepth(Short.MAX_VALUE);
     	hud.layer.setAlpha(0.75f);
-		graphics().rootLayer().add(hud.layer);
+		graphics().rootLayer().addAt(hud.layer, 660, 0);
 
 		new KeyboardControl(this);
 		new PointerControls(this);
 	}
 
+	void DrawHUD(Surface surface){
+		int life=(int)Math.ceil((int)this.jugador1.getLife()/10);
+		for(int x=0;x<life;x++){
+			surface.drawImage(MiddleWars.imagemap[9], (x*20)+10, 10);
+		}
+		if(jugador1.OnWater){
+			int ox=(int)Math.ceil((int)this.jugador1.getOxy()/10);
+			for(int x=0;x<ox;x++){
+				surface.drawImage(MiddleWars.imagemap[10], (x*20)+10, 30);
+			}
+		}
+	}
+	
 	@Override
 	public void Update(float delta) {
+	if(!Pause){
+		if(!jugador1.dead){
 		  hud.update(delta);
 		  cam.update_position(new Vector2(touchVectorX,touchVectorY));
 		  jugador1.update(delta);
 		  cam.setPosition(jugador1.getPosition());
 		  tl.UpdateOffsets(cam);
 		  for(Enemy en: getEnemigos()){
+				if(en.removeMe()){
+			  		getEnemigos().remove(en);
+			  		break;
+			  	}
 				en.update(delta);
 		  }
 		  for(PlayerAttack en: getAttacks()){
@@ -149,6 +201,8 @@ public class Map extends Screen{
 			  	}
 				en.update(delta);
 		  }
+		}
+	}
 	}
 
 	@Override
@@ -168,4 +222,12 @@ public class Map extends Screen{
 	 public TileMap getTileMap(){return this.tl;}
 	 public List<Enemy> getEnemigos(){return this.Enemigos;}
 	 public List<PlayerAttack> getAttacks(){return this.Attack;}
+	 
+	 public void food(){
+		 System.out.println("found some food!");
+		 jugador1.subsLife(-10);
+	 }
+	 public void wood(){
+		 System.out.println("found wood!");
+	 }
 }

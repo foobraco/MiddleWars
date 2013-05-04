@@ -15,13 +15,17 @@ public class Player extends Entity{
 	int clase;
 	Map world;
 	int orientation;
-	public boolean arriba, abajo, izquierda, derecha,attack,OnWater;
+	float life;
+	float oxygen;
+	public boolean arriba, abajo, izquierda, derecha,attack,OnWater,dead;
 	public Player(int cl,Vector2 position,Map mundo){
 		this.clase=cl;
 		setPosition(position);
 		setItem(new BareFists(this,1));
 		world=mundo;
 		loadContent();
+		life=100;
+		oxygen=100;
 	}
 	
 	@Override
@@ -38,10 +42,18 @@ public class Player extends Entity{
 
 	@Override
 	public void update(float delta) {
+		if(getLife()<=0){
+			this.dead=true;
+		}
 		if(OnWater){
 			amp.PlayAnimation(down);
+			subsOxy(0.1f);
+			if(this.getOxy()<0){
+				subsLife(0.1f);
+			}
 		}else{
 			amp.PlayAnimation(up);
+			this.oxygen=100;
 		}
 		amp.updateAnimation(delta/100);
 			if(arriba)
@@ -79,7 +91,33 @@ public class Player extends Entity{
 	public int getClase(){return this.clase;}
 	
 	public void collisions(){
+				
 		Rectangle bounds = boundingBox();
+		
+		for(Enemy en:world.getEnemigos()){
+			if(en.boundingBox().Intersects(bounds)){
+				Vector2 depth = Rectangle.GetIntersectionDepth(bounds,en.boundingBox());
+				if (depth != new Vector2(0,0)) {
+					float absDepthX = Math.abs(depth.X);
+					float absDepthY = Math.abs(depth.Y);
+
+					if (absDepthX > 0 || absDepthY > 0) {					
+						//Is a impasable tile,added by the user, timed, or breakeable.
+							if (absDepthY < absDepthX) {
+								setPosition(new Vector2(getPosition().X,getPosition().Y + depth.Y));
+								subsLife(0.5f);
+								bounds = boundingBox();
+							} else {		
+								setPosition(new Vector2(getPosition().X+ depth.X,getPosition().Y ));
+								subsLife(0.5f);
+								bounds = boundingBox();
+							}
+						}
+			}
+			}
+		}
+		bounds = boundingBox();
+		
 		int leftTile = (int) Math.floor((float) bounds.Left / Tile.Width);
 		int rightTile = (int) Math.ceil(((float) bounds.Right() / Tile.Width)) ;
 		int topTile = (int) Math.floor((float) bounds.Top / Tile.Height);
@@ -118,5 +156,17 @@ public class Player extends Entity{
 			}
 		}
 	}
-
+	
+	public float getLife(){
+		return this.life;
+	}
+	public void subsLife(float x){
+		this.life-=x;
+	}
+	public float getOxy(){
+		return this.oxygen;
+	}
+	public void subsOxy(float x){
+		this.oxygen-=x;
+	}
 }

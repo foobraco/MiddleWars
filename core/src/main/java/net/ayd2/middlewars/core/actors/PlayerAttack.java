@@ -13,6 +13,7 @@ import net.ayd2.middlewars.core.utils.Vector2;
 public class PlayerAttack extends Entity{
 	Map mundo;
 	boolean didHit;
+	int or;
 	public PlayerAttack(Map mapa, Vector2 pos){
 		this.mundo=mapa;
 		loadContent();
@@ -80,6 +81,36 @@ public class PlayerAttack extends Entity{
 							st.subsLife(1);
 							if(st.getLife()<=0){
 								mundo.getTileMap().SetTile(new StaticTile("1", 1, "1", 1), x, y);
+								double random=Math.random()*8;
+								or=(int)random;
+								
+								switch(or){
+								case 3:
+									mundo.food();
+									break;
+								case 0:
+									mundo.wood();
+									break;
+								case 1:
+									mundo.wood();
+									break;
+								case 2:
+									mundo.wood();
+									break;
+								case 4:
+									mundo.wood();
+									break;
+								case 5:
+									mundo.wood();
+									break;
+								case 6:
+									mundo.wood();
+									break;
+								case 7:
+									mundo.wood();
+									break;
+		
+								}
 							}
 						}
 						bounds = boundingBox();

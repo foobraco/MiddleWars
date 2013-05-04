@@ -66,17 +66,22 @@ public class KeyboardControl implements playn.core.Keyboard.Listener{
 	@Override
 	public void onKeyUp(Event event) {
 		mapa.touchVectorX=mapa.touchVectorY=0;
-		mapa.jugador1.derecha=false;
-		mapa.jugador1.izquierda=false;
-		mapa.jugador1.arriba=false;
-		mapa.jugador1.abajo=false;
 		if(event.key().equals(Key.X)){
 			mapa.jugador1.attack=false;
+		}else{
+			mapa.jugador1.derecha=false;
+			mapa.jugador1.izquierda=false;
+			mapa.jugador1.arriba=false;
+			mapa.jugador1.abajo=false;
 		}
 		if(event.key().equals(Key.ENTER)){
 			if(!mapa.hasStarted){
 	  			mapa.hasStarted=true;
 	  		}
+		}
+		
+		if(event.key().equals(Key.P)){
+			mapa.Pause=mapa.Pause ? false:true;
 		}
 	}
 	
