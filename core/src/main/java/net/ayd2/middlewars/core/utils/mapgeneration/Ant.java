@@ -22,37 +22,37 @@ public class Ant implements SubjectAnt {
 		switch(Direction){
 		case 0://up
 			if(getTile(PositionX,PositionY-1) != null){
-				setTile(PositionX,PositionY-1,new StaticTile(String.valueOf(this.Type), this.Type, String.valueOf(this.Type), Direction));
+				setTile(PositionX,PositionY-1,new StaticTile(String.valueOf(this.Type), this.Type, String.valueOf(this.Type), this.Type));
 				PositionY=PositionY-1;
 			}
 			break;
 		case 1://upl
 			if(getTile(PositionX-1,PositionY-1) != null){
-				setTile(PositionX-1,PositionY-1,new StaticTile(String.valueOf(this.Type), this.Type, String.valueOf(this.Type), Direction));
+				setTile(PositionX-1,PositionY-1,new StaticTile(String.valueOf(this.Type), this.Type, String.valueOf(this.Type), this.Type));
 				PositionX=PositionX-1;PositionY=PositionY-1;
 			}
 			break;
 		case 2://left
 			if(getTile(PositionX-1,PositionY) != null){
-				setTile(PositionX-1,PositionY,new StaticTile(String.valueOf(this.Type), this.Type, String.valueOf(this.Type), Direction));
+				setTile(PositionX-1,PositionY,new StaticTile(String.valueOf(this.Type), this.Type, String.valueOf(this.Type), this.Type));
 				PositionX=PositionX-1;
 			}
 			break;
 		case 3://downl
 			if(getTile(PositionX-1,PositionY+1) != null){
-				setTile(PositionX-1,PositionY+1,new StaticTile(String.valueOf(this.Type), this.Type, String.valueOf(this.Type), Direction));
+				setTile(PositionX-1,PositionY+1,new StaticTile(String.valueOf(this.Type), this.Type, String.valueOf(this.Type), this.Type));
 				PositionX=PositionX-1;PositionY=PositionY+1;
 			}
 			break;
 		case 4://down
 			if(getTile(PositionX,PositionY+1) != null){
-				setTile(PositionX,PositionY+1,new StaticTile(String.valueOf(this.Type), this.Type, String.valueOf(this.Type), Direction));
+				setTile(PositionX,PositionY+1,new StaticTile(String.valueOf(this.Type), this.Type, String.valueOf(this.Type), this.Type));
 				PositionY=PositionY+1;
 			}
 			break;
 		case 5://downr
 			if(getTile(PositionX+1,PositionY+1) != null){
-				setTile(PositionX+1,PositionY+1,new StaticTile(String.valueOf(this.Type), this.Type, String.valueOf(this.Type), Direction));
+				setTile(PositionX+1,PositionY+1,new StaticTile(String.valueOf(this.Type), this.Type, String.valueOf(this.Type), this.Type));
 				PositionX=PositionX+1;PositionY=PositionY+1;
 			}
 			break;

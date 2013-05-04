@@ -35,7 +35,7 @@ public class TestAvatar extends JUnitStory {
  
  @Given("avatar position")
  public void aAvatarPosition() {
-	 jugador = new Player(0, new Vector2(120,120));
+	 jugador = new Player(0, new Vector2(120,120), null);
  }
 
  @When("the user starts the game")

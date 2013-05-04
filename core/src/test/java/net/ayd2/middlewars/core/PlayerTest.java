@@ -24,19 +24,19 @@ public class PlayerTest {
 
   @Test
   public void testVectorPosition() {
-    Player tester = new Player(0, new Vector2(160,160));
+    Player tester = new Player(0, new Vector2(160,160), null);
     assertEquals("Player Pos: 160.0,160.0", "Player Pos: "+tester.getPosition().X+","+tester.getPosition().Y);
   }
   
   @Test
   public void testStartingItem() {
-    Player tester = new Player(0, new Vector2(50,50));
+    Player tester = new Player(0, new Vector2(50,50), null);
     assertEquals(0, tester.getItem().getType());
   }
 
   @Test
   public void testItemChange() {
-    Player tester = new Player(0, new Vector2(50,50));
+    Player tester = new Player(0, new Vector2(50,50), null);
     tester.setItem(new Sword(tester, 1));
     assertEquals(1, tester.getItem().getType());
   }

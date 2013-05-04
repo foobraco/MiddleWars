@@ -37,7 +37,7 @@ public class TestNavigation extends JUnitStory {
  
  @Given("avatar position")
  public void avatarPosition() {
-	 jugador = new Player(0, new Vector2(0,0));
+	 jugador = new Player(0, new Vector2(0,0), null);
  }
 
  @When("the user navigates in the world")

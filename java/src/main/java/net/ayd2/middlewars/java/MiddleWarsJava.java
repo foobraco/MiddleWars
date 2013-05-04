@@ -15,6 +15,13 @@ public class MiddleWarsJava {
      * dimensions [800,600] defines the size in tiles of the map, 
      * [number of ants] for the complexity algorithm
      */
+    JavaPlatform platform = JavaPlatform.register();
+    platform.setTitle("Analisis y Dise~no2");
+    playn.java.JavaPlatform.Config config = new playn.java.JavaPlatform.Config();
+	  config.width = 800;
+	  config.height = 600;
+	    platform.graphics().registerFont("PressStart2P", "Text/PressStart2P.ttf");
+	  platform = JavaPlatform.register(config);
     String data="create [forest] map with dimensions [40,20] with [100] ants";
     PlayN.run(new MiddleWars(data));
   }

@@ -18,25 +18,31 @@ public class KeyboardControl implements playn.core.Keyboard.Listener{
 		// TODO Auto-generated method stub
 		
 		if(event.key().equals(Key.UP)){
-			if(getCollision(0,-1)!=2&&getCollision(0,-1)!=-1){
-				mapa.jugador1.setPosition(new Vector2(mapa.tl.tilesToPixelsX(mapa.tl.pixelsToTilesX(mapa.jugador1.getPosition().X)),mapa.tl.tilesToPixelsX(mapa.tl.pixelsToTilesX(mapa.jugador1.getPosition().Y)-1)));
-			}
+			mapa.jugador1.arriba=true;
+			mapa.jugador1.izquierda=false;
+			mapa.jugador1.derecha=false;
+			mapa.jugador1.abajo=false;
 		}
 		if(event.key().equals(Key.LEFT)){
-			if(getCollision(-1,0)!=2&&getCollision(-1,0)!=-1){
-				mapa.jugador1.setPosition(new Vector2(mapa.tl.tilesToPixelsX(mapa.tl.pixelsToTilesX(mapa.jugador1.getPosition().X)-1),mapa.tl.tilesToPixelsX(mapa.tl.pixelsToTilesX(mapa.jugador1.getPosition().Y))));
-
-			}
+			mapa.jugador1.izquierda=true;
+			mapa.jugador1.derecha=false;
+			mapa.jugador1.arriba=false;
+			mapa.jugador1.abajo=false;
 		}
 		if(event.key().equals(Key.DOWN)){
-			if(getCollision(0,1)!=2&&getCollision(0,1)!=-1){
-				mapa.jugador1.setPosition(new Vector2(mapa.tl.tilesToPixelsX(mapa.tl.pixelsToTilesX(mapa.jugador1.getPosition().X)),mapa.tl.tilesToPixelsX(mapa.tl.pixelsToTilesX(mapa.jugador1.getPosition().Y)+1)));
-			}
+			mapa.jugador1.abajo=true;
+			mapa.jugador1.izquierda=false;
+			mapa.jugador1.arriba=false;
+			mapa.jugador1.derecha=false;
 		}
 		if(event.key().equals(Key.RIGHT)){
-			if(getCollision(1,0)!=2&&getCollision(1,0)!=-1){
-				mapa.jugador1.setPosition(new Vector2(mapa.tl.tilesToPixelsX(mapa.tl.pixelsToTilesX(mapa.jugador1.getPosition().X)+1),mapa.tl.tilesToPixelsX(mapa.tl.pixelsToTilesX(mapa.jugador1.getPosition().Y))));
-			}
+			mapa.jugador1.derecha=true;
+			mapa.jugador1.izquierda=false;
+			mapa.jugador1.arriba=false;
+			mapa.jugador1.abajo=false;
+		}
+		if(event.key().equals(Key.X)){
+			mapa.jugador1.attack=true;
 		}
 		
 /*					if(event.key().equals(Key.LEFT)){
@@ -60,6 +66,18 @@ public class KeyboardControl implements playn.core.Keyboard.Listener{
 	@Override
 	public void onKeyUp(Event event) {
 		mapa.touchVectorX=mapa.touchVectorY=0;
+		mapa.jugador1.derecha=false;
+		mapa.jugador1.izquierda=false;
+		mapa.jugador1.arriba=false;
+		mapa.jugador1.abajo=false;
+		if(event.key().equals(Key.X)){
+			mapa.jugador1.attack=false;
+		}
+		if(event.key().equals(Key.ENTER)){
+			if(!mapa.hasStarted){
+	  			mapa.hasStarted=true;
+	  		}
+		}
 	}
 	
 	void setMap(Map mp){

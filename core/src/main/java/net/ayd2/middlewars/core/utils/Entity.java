@@ -24,8 +24,8 @@ public abstract class Entity {
 		this.Position=pos;
 	}
 	public Rectangle boundingBox(){
-		int left = (int) (Math.round(getPosition().X) + Bounds.Left);
-		int top = (int) (Math.round(getPosition().Y) + Bounds.Top);
+		int left = (int) (Math.round(getPosition().X) +Bounds.Left());
+		int top = (int) (Math.round(getPosition().Y) +Bounds.Top());
 		return new Rectangle(left, top, Bounds.Width, Bounds.Height, 1);
 	}
 	public void setRemove(){this.removeme=true;}
@@ -34,4 +34,5 @@ public abstract class Entity {
 	public void setAngle(int angle){this.angle=angle;}
 	public Item getItem(){return this.itm;}
 	public void setItem(Item wp){this.itm=wp;}
+	public void setBounds(Rectangle r){this.Bounds=r;}
 }

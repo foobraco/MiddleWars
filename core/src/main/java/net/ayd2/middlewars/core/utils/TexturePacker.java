@@ -5,9 +5,6 @@ import static playn.core.PlayN.*;
 
 import java.util.HashMap;
 
-import net.ayd2.middlewars.core.MiddleWars;
-
-
 import playn.core.AssetWatcher;
 import playn.core.CanvasImage;
 import playn.core.Image;
